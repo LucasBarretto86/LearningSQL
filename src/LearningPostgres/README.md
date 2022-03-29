@@ -5,15 +5,16 @@
     - [On Linux](#on-linux)
     - [Enabling](#enabling)
     - [Starting](#starting)
-    - [Stopping](#stopping)
     - [Checking status](#checking-status)
-    - [Creating a password](#creating-a-password)
-    - [Staging Posgres shell](#staging-posgres-shell)
-    - [Creating a User, database and acessing](#creating-a-user-database-and-acessing)
+    - [Stopping](#stopping)
+    - [Staging Postgres shell](#staging-postgres-shell)
+    - [Creating role](#creating-role)
+    - [Granting ALL PRIVILEGES](#granting-all-privileges)
     - [Update Owner](#update-owner)
-    - [Grating access to User](#grating-access-to-user)
     - [Listing databases](#listing-databases)
     - [Using a database](#using-a-database)
+    - [Listing Users/Roles](#listing-usersroles)
+    - [Connections and Authentications](#connections-and-authentications)
     - [Running PSQL Console](#running-psql-console)
 
 ## Installation and Setup
@@ -31,6 +32,7 @@ echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" 
 ### Enabling
 
 ```shell
+sudo pg_ctlcluster 13 main start
 sudo systemctl enable postgresql.service
 ```
 
@@ -40,37 +42,35 @@ sudo systemctl enable postgresql.service
 sudo systemctl start postgresql.service
 ```
 
+### Checking status
+
+```shell
+sudo systemctl status postgresql@13-main.service
+```
+
 ### Stopping
 
 ```shell
 sudo systemctl stop postgresql.service
 ```
 
-### Checking status
-
-```shell
-sudo systemctl status postgresql.service
-```
-
-### Creating a password
-
-```shell
-sudo passwd postgres
-```
-
-### Staging Posgres shell
+### Staging Postgres shell
 
 ```shell
 sudo su -l postgres
 psql
 ```
 
-### Creating a User, database and acessing
+### Creating role
 
-```shell
-CREATEUSER user_name
-CREATEDB database_name -O user_name
-psql database_name
+```sql
+CREATE ROLE user_name SUPERUSER LOGIN PASSWORD 'password';
+```
+
+### Granting ALL PRIVILEGES
+
+```sql
+GRANT ALL PRIVILEGES ON SCHEMA public TO user_name;
 ```
 
 ### Update Owner
@@ -79,25 +79,44 @@ psql database_name
 ALTER DATABASE database_name OWNER TO user_name;
 ```
 
-### Grating access to User
-
-```shell
-GRANT CONNECT ON DATABASE database_name TO user_name;
-
-GRANT USAGE ON SCHEMA public TO user_name;
-```
-
 ### Listing databases
 
 ```shell
-/l
+\l
 ```
 
 ### Using a database
 
 ```shell
-/C database_name;
+\C database_name;
 ```
+
+### Listing Users/Roles
+
+```shell
+\du
+```
+
+### Connections and Authentications
+
+find postgres config file
+
+```shell
+sudo nano /etc/postgresql/13/main/postgresql.conf
+```
+
+Within the postgres config file update `listen_addresses` from `locahost` to `*` as bellow
+
+```txt
+#------------------------------------------------------------------------------
+# CONNECTIONS AND AUTHENTICATION
+#------------------------------------------------------------------------------
+# - Connection Settings -
+
+#listen_addresses = '*' 
+```
+
+find
 
 ### Running PSQL Console
 
