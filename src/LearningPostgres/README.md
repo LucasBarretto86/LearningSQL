@@ -14,6 +14,7 @@
     - [Grating access to User](#grating-access-to-user)
     - [Listing databases](#listing-databases)
     - [Using a database](#using-a-database)
+    - [Running PSQL Console](#running-psql-console)
 
 ## Installation and Setup
 
@@ -96,4 +97,12 @@ GRANT USAGE ON SCHEMA public TO user_name;
 
 ```shell
 /C database_name;
+```
+
+### Running PSQL Console
+
+To initialize the databse console within the project
+
+```shell
+psql DATABASE_NAME
 ```
