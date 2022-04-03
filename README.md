@@ -35,6 +35,7 @@
     - [RIGHT JOIN](#right-join)
     - [FULL JOIN](#full-join)
     - [SQL Commands table](#sql-commands-table)
+    - [Gists](#gists)
 
 ## CREATE
 
@@ -440,3 +441,7 @@ ON parent.id = child.parent_id;
 | LOCK |
 | MOVE |
 | NOTIFY |
+
+### Gists
+
+[SQL Script to create test DB](https://gist.github.com/LucasBarretto86/ddeec416c707578c7d993238f2f46c14)
