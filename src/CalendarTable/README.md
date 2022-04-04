@@ -9,6 +9,7 @@ Some of the content of this file will be a copy or a abstraction from [Desinging
     - [Addtional dates relative in time](#addtional-dates-relative-in-time)
     - [Holidays and Business days flags](#holidays-and-business-days-flags)
     - [Miscellaneous Metrics](#miscellaneous-metrics)
+    - [Boolean types](#boolean-types)
   - [References](#references)
 
 ## Concept
@@ -73,6 +74,15 @@ First step is to define the infos we need for our table, which will lead to our 
 |Is Leap Year?           | Is the current date is contained within a leap year, then this bit would be set to 1.                                                               |
 |Days in Month           | Contains the number of days in the current month.                                                                                                   |
 |Calendar Date String    | Literraly the date in string like "2022-01-24"                                                                                                      |
+
+### Boolean types
+
+| Database     | Boolean?      | Use Instead      |
+|:------------ |:------------- | :--------------- |
+| Oracle       | No            | NUMBER(1)        |
+| SQL Server   | No            | BIT              |
+| MySQL        | No            | BIT or TINYINT   |
+| PostgreSQL   | Yes           | Boolean          |
 
 ## References
 
