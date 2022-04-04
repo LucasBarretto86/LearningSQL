@@ -2,6 +2,13 @@
 # Learning SQL
 
 - [Learning SQL](#learning-sql)
+  - [Data Types](#data-types)
+    - [Numeric](#numeric)
+    - [Date and Time](#date-and-time)
+    - [Character and String Data Types](#character-and-string-data-types)
+    - [Unicode Character and String Data Types](#unicode-character-and-string-data-types)
+    - [Binary Data Types](#binary-data-types)
+    - [Miscellaneous Data Types](#miscellaneous-data-types)
   - [CREATE](#create)
     - [Create Database](#create-database)
     - [Create Tables](#create-tables)
@@ -36,6 +43,69 @@
     - [FULL JOIN](#full-join)
     - [SQL Commands table](#sql-commands-table)
     - [Gists](#gists)
+
+## Data Types
+
+### Numeric
+
+| Datatype | From                       | To                        |
+|:---------|:---------------------------|:--------------------------|
+| bit      | 0                          | 1                         |
+| tinyint  | 0                          | 255                       |
+| smallint | -32,768                    | 32,767                    |
+| int      | -2,147,483,648             | 2,147,483,647             |
+| bigint   | -9,223,372,036,854,775,808 | 9,223,372,036,854,775,807 |
+| decimal  | -10^38 +1                  | 10^38 -1                  |
+| numeric  | -10^38 +1                  | 10^38 -1                  |
+| float    | -1.79E + 308               | 1.79E + 308               |
+| real     | -3.40E + 38                | 3.40E + 3 8               |
+
+### Date and Time
+
+| Datatype     | Description                                                                                                                 |
+|:-------------|:----------------------------------------------------------------------------------------------------------------------------|
+| DATE         | Stores date in the format YYYY-MM-DD                                                                                        |
+| TIME         | Stores time in the format HH:MI:SS                                                                                          |
+| DATETIME     | Stores date and time information in the format YYYY-MM-DD HH:MI:SS                                                          |
+| TIMESTAMP    | Stores number of seconds passed since the Unix epoch (‘1970-01-01 00:00:00’ UTC)                                            |
+| YEAR         | Stores year in 2 digits or 4 digit format. Range 1901 to 2155 in 4-digit format. Range 70 to 69, representing 1970 to 2069. |
+
+### Character and String Data Types
+
+| Datatype       | Description                                                                  |
+|:---------------|:-----------------------------------------------------------------------------|
+| CHAR           | Fixed length with a maximum length of 8,000 characters                       |
+| VARCHAR        | Variable-length storage with a maximum length of 8,000 characters            |
+| VARCHAR(max)   | Variable-length storage with provided max characters, not supported in MySQL |
+| TEXT           | Variable-length storage with maximum size of 2GB data                        |
+
+### Unicode Character and String Data Types
+
+| Datatype       | Description                                                       |
+|:---------------|:------------------------------------------------------------------|
+| NCHAR          | Fixed length with maximum length of 4,000 characters              |
+| NVARCHAR       | Variable-length storage with a maximum length of 4,000 characters |
+| NVARCHAR(max)  | Variable-length storage with provided max characters              |
+| NTEXT          | Variable-length storage with a maximum size of 1GB data           |
+*Note that above data types are not supported in MySQL database.*
+
+### Binary Data Types
+
+| Datatype        | Description                                                  |
+|:----------------|:-------------------------------------------------------------|
+| BINARY          | Fixed length with a maximum length of 8,000 bytes            |
+| VARBINARY       | Variable-length storage with a maximum length of 8,000 bytes |
+| VARBINARY(max)  | Variable-length storage with provided max bytes              |
+| IMAGE           | Variable-length storage with maximum size of 2GB binary data |
+
+### Miscellaneous Data Types
+
+| Datatype       | Description                                     |
+|:---------------|:------------------------------------------------|
+| CLOB           | Character large objects that can hold up to 2GB |
+| BLOB           | For binary large objects                        |
+| XML            | For storing XML data                            |
+| JSON           | For storing JSON data                           |
 
 ## CREATE
 
