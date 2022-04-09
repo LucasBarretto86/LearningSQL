@@ -1,4 +1,3 @@
-
 # Learning SQL
 
 - [Learning SQL](#learning-sql)
