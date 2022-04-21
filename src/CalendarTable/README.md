@@ -9,7 +9,8 @@ Some of the content of this file will be a copy or a abstraction from [Desinging
     - [Addtional dates relative in time](#addtional-dates-relative-in-time)
     - [Holidays and Business days flags](#holidays-and-business-days-flags)
     - [Miscellaneous Metrics](#miscellaneous-metrics)
-    - [Boolean types](#boolean-types)
+  - [Boolean types](#boolean-types)
+    - [Populating table](#populating-table)
   - [References](#references)
 
 ## Concept
@@ -75,7 +76,7 @@ First step is to define the infos we need for our table, which will lead to our 
 |Days in Month           | Contains the number of days in the current month.                                                                                                   |
 |Calendar Date String    | Literraly the date in string like "2022-01-24"                                                                                                      |
 
-### Boolean types
+## Boolean types
 
 | Database     | Boolean?      | Use Instead      |
 |:------------ |:------------- | :--------------- |
@@ -83,6 +84,8 @@ First step is to define the infos we need for our table, which will lead to our 
 | SQL Server   | No            | BIT              |
 | MySQL        | No            | BIT or TINYINT   |
 | PostgreSQL   | Yes           | Boolean          |
+
+### Populating table
 
 ## References
 

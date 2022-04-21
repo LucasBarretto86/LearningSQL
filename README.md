@@ -23,8 +23,8 @@
     - [Select records where specific data is present](#select-records-where-specific-data-is-present)
     - [Select where records that contains](#select-where-records-that-contains)
   - [UPDATE](#update)
-  - [DELTE](#delte)
-  - [Functions](#functions)
+  - [DELETE](#delete)
+  - [FUNCTIONS](#functions)
     - [Count](#count)
   - [ORDER BY](#order-by)
   - [ALTER TABLE](#alter-table)
@@ -35,11 +35,23 @@
     - [Adding constrants](#adding-constrants)
     - [Dropping constaints](#dropping-constaints)
     - [Adding Foreing key and constrants](#adding-foreing-key-and-constrants)
-  - [Joins](#joins)
+  - [JOINS](#joins)
     - [INNER JOIN](#inner-join)
     - [LEFT JOIN](#left-join)
     - [RIGHT JOIN](#right-join)
     - [FULL JOIN](#full-join)
+  - [SEQUENCES](#sequences)
+    - [Complete synthax](#complete-synthax)
+    - [Basic sequence](#basic-sequence)
+    - [`nextval()` function](#nextval-function)
+    - [Sequence examples](#sequence-examples)
+      - [Creating simple sequence](#creating-simple-sequence)
+      - [Creating Students table](#creating-students-table)
+      - [Using sequence as students are inserted](#using-sequence-as-students-are-inserted)
+      - [Creating sequence auto incremental](#creating-sequence-auto-incremental)
+      - [Create pets table](#create-pets-table)
+      - [Create sequence to auto increment id](#create-sequence-to-auto-increment-id)
+  - [PROCEDURES](#procedures)
     - [SQL Commands table](#sql-commands-table)
     - [Gists](#gists)
 
@@ -196,14 +208,14 @@ SET last_name = 'Barretto Vieira'
 WHERE first_name = 'Camila';
 ```
 
-## DELTE
+## DELETE
 
 ```sql
 DELETE FROM person
 WHERE birthday < '1980-1-1';
 ```
 
-## Functions
+## FUNCTIONS
 
 ### Count
 
@@ -273,7 +285,7 @@ FOREIGN KEY (parent_id)
 REFERENCES parent (id);
 ```
 
-## Joins
+## JOINS
 
 |Join Type|Description|
 | :--- | :--- |
@@ -321,6 +333,110 @@ FROM child
 FULL JOIN parent
 ON parent.id = child.parent_id;
 ```
+
+## SEQUENCES
+
+A sequence in SQL is a user-defined schema-bound object that yields a sequence of integers based on a specified specification. The CREATE SEQUENCE statement is used to create sequences.
+
+### Complete synthax
+
+```sql
+CREATE SEQUENCE sequence_name
+  AS { SMALLINT | INT | BIGINT }
+  INCREMENT BY { increment_by_value }
+  MINVALUE { min_value } 
+  MAXVALUE { max_value  }
+  START WITH { start_value }
+  CYCLE
+  OWNED BY { table_name.column_name | NONE };
+```
+
+|Options| Description|
+|:----- | :--------- |
+| AS            | Specify the data type of the sequence|
+| MINVALUE      | The minimum value and maximum value of the sequence|
+| MAXVALUE      | For an ascending sequence, the default maximum value is the maximum value of the data type of the sequence |
+| CYCLE         | The CYCLE allows you to restart the value if the limit is reached. |
+| OWNED BY      | The OWNED BY clause allows you to associate the table column with the sequence so that when you drop the column or table, PostgreSQL will automatically drop the associated sequence.|
+
+### Basic sequence
+
+```sql
+CREATE SEQUENCE sequence_name
+  INCREMENT BY { increment_by_value }
+  START WITH { start_value };
+```
+
+### `nextval()` function
+
+To get the next value from the sequence to you use the `nextval()` function:
+
+```sql
+SELECT nextval('sequence_name');
+```
+
+### Sequence examples
+
+#### Creating simple sequence
+
+```sql
+CREATE SEQUENCE students_id_sequence
+  START WITH 1
+  INCREMENT BY 1
+  MINVALUE 0
+  MAXVALUE 40
+```
+
+#### Creating Students table
+
+```sql
+CREATE TABLE students (
+  id NUMBER(10),
+  name VARCHAR(20)
+);
+```
+
+#### Using sequence as students are inserted
+
+```sql
+INSERT INTO students VALUES(students_id_sequence.nextval,'Ramesh');
+INSERT INTO students VALUES(students_id_sequence.nextval,'Suresh');
+);
+```
+
+Resulting:
+
+| ID  |      NAME      |
+| :-- | :------------: |
+|  1  |     Ramesh     |
+|  2  |     Suresh     |
+
+#### Creating sequence auto incremental
+
+#### Create pets table
+
+```sql
+CREATE TABLE pets (
+  id NUMBER(10),
+  name VARCHAR(20)
+)
+```
+
+#### Create sequence to auto increment id
+
+```sql
+CREATE SEQUENCE pets_id_sequence
+  START WITH 1
+  INCREMENT BY 1
+  CACHE 1
+  OWNED BY pets.id
+```
+
+```sql
+ALTER TABLE ONLY pets ALTER COLUMN id SET DEFAULT nextval('pets.pets_id_sequence');
+```
+
+## PROCEDURES
 
 ### SQL Commands table
 

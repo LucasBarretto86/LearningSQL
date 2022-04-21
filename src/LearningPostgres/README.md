@@ -63,26 +63,26 @@ psql
 
 ### Creating role
 
-```sql
-CREATE ROLE user_name SUPERUSER LOGIN PASSWORD 'password';
-```
+  ```sql
+  CREATE ROLE user_name SUPERUSER LOGIN PASSWORD 'password';
+  ```
 
 ### Granting ALL PRIVILEGES
 
-```sql
-GRANT ALL PRIVILEGES ON SCHEMA public TO user_name;
-```
+  ```sql
+  GRANT ALL PRIVILEGES ON SCHEMA public TO user_name;
+  ```
 
 ### Update Owner
 
-```shell
-ALTER DATABASE database_name OWNER TO user_name;
-```
+  ```shell
+  ALTER DATABASE database_name OWNER TO user_name;
+  ```
 
 ### Listing databases
 
-```shell
-\l
+  ```shell
+  \l
 ```
 
 ### Using a database
