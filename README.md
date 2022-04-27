@@ -52,6 +52,7 @@
       - [Create pets table](#create-pets-table)
       - [Create sequence to auto increment id](#create-sequence-to-auto-increment-id)
   - [PROCEDURES](#procedures)
+  - [TRIGGERS](#triggers)
     - [SQL Commands table](#sql-commands-table)
     - [Gists](#gists)
 
@@ -61,15 +62,15 @@
 
 | Datatype | From                       | To                        |
 |:---------|:---------------------------|:--------------------------|
-| bit      | 0                          | 1                         |
-| tinyint  | 0                          | 255                       |
-| smallint | -32,768                    | 32,767                    |
-| int      | -2,147,483,648             | 2,147,483,647             |
-| bigint   | -9,223,372,036,854,775,808 | 9,223,372,036,854,775,807 |
-| decimal  | -10^38 +1                  | 10^38 -1                  |
-| numeric  | -10^38 +1                  | 10^38 -1                  |
-| float    | -1.79E + 308               | 1.79E + 308               |
-| real     | -3.40E + 38                | 3.40E + 3 8               |
+| BIT      | 0                          | 1                         |
+| TYNEINT  | 0                          | 255                       |
+| SMALLINT | -32,768                    | 32,767                    |
+| INT      | -2,147,483,648             | 2,147,483,647             |
+| BIGINT   | -9,223,372,036,854,775,808 | 9,223,372,036,854,775,807 |
+| DECIMAL  | -10^38 +1                  | 10^38 -1                  |
+| NUMERIC  | -10^38 +1                  | 10^38 -1                  |
+| FLOAT    | -1.79E + 308               | 1.79E + 308               |
+| REAL     | -3.40E + 38                | 3.40E + 3 8               |
 
 ### Date and Time
 
@@ -437,6 +438,32 @@ ALTER TABLE ONLY pets ALTER COLUMN id SET DEFAULT nextval('pets.pets_id_sequence
 ```
 
 ## PROCEDURES
+
+## TRIGGERS
+
+```sql
+    CREATE FUNCTION emp_stamp() RETURNS trigger AS $emp_stamp$
+    BEGIN
+        -- Check that empname and salary are given
+        IF NEW.empname IS NULL THEN
+            RAISE EXCEPTION 'empname cannot be null';
+        END IF;
+        IF NEW.salary IS NULL THEN
+            RAISE EXCEPTION '% cannot have null salary', NEW.empname;
+        END IF;
+
+        -- Who works for us when they must pay for it?
+        IF NEW.salary < 0 THEN
+            RAISE EXCEPTION '% cannot have a negative salary', NEW.empname;
+        END IF;
+
+        -- Remember who changed the payroll when
+        NEW.last_date := current_timestamp;
+        NEW.last_user := current_user;
+        RETURN NEW;
+    END;
+$emp_stamp$ LANGUAGE plpgsql;"
+```
 
 ### SQL Commands table
 

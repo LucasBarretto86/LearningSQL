@@ -14,6 +14,7 @@
     - [Listing databases](#listing-databases)
     - [Using a database](#using-a-database)
     - [Listing Users/Roles](#listing-usersroles)
+    - [Listing tables](#listing-tables)
     - [Connections and Authentications](#connections-and-authentications)
     - [Running PSQL Console](#running-psql-console)
 
@@ -75,26 +76,32 @@ psql
 
 ### Update Owner
 
-  ```shell
+  ```sql
   ALTER DATABASE database_name OWNER TO user_name;
   ```
 
 ### Listing databases
 
-  ```shell
+  ```postgres
   \l
 ```
 
 ### Using a database
 
-```shell
-\C database_name;
+```postgres
+\c database_name;
 ```
 
 ### Listing Users/Roles
 
-```shell
+```postgres
 \du
+```
+
+### Listing tables
+
+```postgres
+\dt
 ```
 
 ### Connections and Authentications
