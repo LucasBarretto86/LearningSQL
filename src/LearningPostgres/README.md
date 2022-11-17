@@ -25,7 +25,7 @@
 ```shell
 sudo apt-get update
 sudo apt-get upgrade
-sudo apt install postgresql-13 postgresql-client-13
+sudo apt install postgresql-14 postgresql-client-14
 wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add 
 echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" | sudo tee  /etc/apt/sources.list.d/pgdg.list
 ```
@@ -33,7 +33,7 @@ echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" 
 ### Enabling
 
 ```shell
-sudo pg_ctlcluster 13 main start
+sudo pg_ctlcluster 14 main start
 sudo systemctl enable postgresql.service
 ```
 
@@ -66,6 +66,12 @@ psql
 
   ```sql
   CREATE ROLE user_name SUPERUSER LOGIN PASSWORD 'password';
+  ```
+
+> locally you don't really need a password
+
+  ```sql
+  CREATE ROLE user_name SUPERUSER LOGIN;
   ```
 
 ### Granting ALL PRIVILEGES
