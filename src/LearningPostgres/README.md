@@ -17,6 +17,8 @@
     - [Listing tables](#listing-tables)
     - [Connections and Authentications](#connections-and-authentications)
     - [Running PSQL Console](#running-psql-console)
+  - [Commands Table](#commands-table)
+  - [References](#references)
 
 ## Installation and Setup
 
@@ -27,7 +29,7 @@ sudo apt-get update
 sudo apt-get upgrade
 sudo apt install postgresql-14 postgresql-client-14
 wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add 
-echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" | sudo tee  /etc/apt/sources.list.d/pgdg.list
+echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" | sudo tee/etc/apt/sources.list.d/pgdg.list
 ```
 
 ### Enabling
@@ -64,32 +66,26 @@ psql
 
 ### Creating role
 
-  ```sql
-  CREATE ROLE user_name SUPERUSER LOGIN PASSWORD 'password';
-  ```
-
-> locally you don't really need a password
-
-  ```sql
-  CREATE ROLE user_name SUPERUSER LOGIN;
-  ```
+```sql
+CREATE ROLE user_name SUPERUSER LOGIN PASSWORD 'password';
+```
 
 ### Granting ALL PRIVILEGES
 
-  ```sql
-  GRANT ALL PRIVILEGES ON SCHEMA public TO user_name;
-  ```
+```sql
+GRANT ALL PRIVILEGES ON SCHEMA public TO user_name;
+```
 
 ### Update Owner
 
-  ```sql
-  ALTER DATABASE database_name OWNER TO user_name;
-  ```
+```sql
+ALTER DATABASE database_name OWNER TO user_name;
+```
 
 ### Listing databases
 
-  ```postgres
-  \l
+```postgres
+\l
 ```
 
 ### Using a database
@@ -133,8 +129,17 @@ find
 
 ### Running PSQL Console
 
-To initialize the databse console within the project
+To initialize the database console within the project
 
 ```shell
 psql DATABASE_NAME
 ```
+
+## Commands Table
+
+> TODO
+
+## References
+
+[Postgres Administration Tutorial](<https://www.postgresqltutorial.com/postgresql-administration/>)
+[Postgres Cheat Sheet](https://postgrescheatsheet.com/#/tables)

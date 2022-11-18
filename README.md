@@ -17,7 +17,7 @@
   - [SELECT](#select)
     - [Select all records from a table](#select-all-records-from-a-table)
     - [Select a specific column from a table](#select-a-specific-column-from-a-table)
-    - [Select distintic data from a table](#select-distintic-data-from-a-table)
+    - [Select distinct data from a table](#select-distinct-data-from-a-table)
     - [Select within Range](#select-within-range)
   - [WHERE](#where)
     - [Select records where specific data is present](#select-records-where-specific-data-is-present)
@@ -31,17 +31,17 @@
     - [Renaming table](#renaming-table)
     - [Adding new columns](#adding-new-columns)
     - [Altering column](#altering-column)
-    - [Droping column](#droping-column)
-    - [Adding constrants](#adding-constrants)
-    - [Dropping constaints](#dropping-constaints)
-    - [Adding Foreing key and constrants](#adding-foreing-key-and-constrants)
+    - [Dropping column](#dropping-column)
+    - [Adding constraints](#adding-constraints)
+    - [Dropping constraints](#dropping-constraints)
+    - [Adding Foreign key and constraints](#adding-foreign-key-and-constraints)
   - [JOINS](#joins)
     - [INNER JOIN](#inner-join)
     - [LEFT JOIN](#left-join)
     - [RIGHT JOIN](#right-join)
     - [FULL JOIN](#full-join)
   - [SEQUENCES](#sequences)
-    - [Complete synthax](#complete-synthax)
+    - [Complete syntax](#complete-syntax)
     - [Basic sequence](#basic-sequence)
     - [`nextval()` function](#nextval-function)
     - [Sequence examples](#sequence-examples)
@@ -172,7 +172,7 @@ SELECT column_name
 FROM person;
 ```
 
-### Select distintic data from a table
+### Select distinct data from a table
 
 ```sql
 SELECT DISTINCT last_name FROM person
@@ -255,14 +255,14 @@ ALTER TABLE child
 ALTER COLUMN parent_id SET DEFAULT 0;
 ```
 
-### Droping column
+### Dropping column
 
 ```sql
 ALTER TABLE child
 DROP COLUMN parent_id;
 ```
 
-### Adding constrants
+### Adding constraints
 
 ```sql
 ALTER TABLE child
@@ -270,14 +270,14 @@ ADD CONSTRAINT unique_parent_id_constraint
 UNIQUE (parent_id);
 ```
 
-### Dropping constaints
+### Dropping constraints
 
 ```sql
 ALTER TABLE child
 DROP CONSTRAINT unique_parent_id_constraint;
 ```
 
-### Adding Foreing key and constrants
+### Adding Foreign key and constraints
 
 ```sql
 ALTER TABLE child
@@ -293,7 +293,7 @@ REFERENCES parent (id);
 |INNER  | Only returns the values that has relation, skipping every record that has null relation |
 |LEFT   | return the left table complete including null relations but removes null relations from the right table |
 |RIGHT | return the right table complete including null relations but removes null relations from the left table |
-|FULL   | return every recordo from all joined table whether it has relation or not |
+|FULL   | return every records from all joined table whether it has relation or not |
 
 ### INNER JOIN
 
@@ -339,7 +339,7 @@ ON parent.id = child.parent_id;
 
 A sequence in SQL is a user-defined schema-bound object that yields a sequence of integers based on a specified specification. The CREATE SEQUENCE statement is used to create sequences.
 
-### Complete synthax
+### Complete syntax
 
 ```sql
 CREATE SEQUENCE sequence_name
