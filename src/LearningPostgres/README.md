@@ -8,6 +8,9 @@
     - [Checking status](#checking-status)
     - [Stopping](#stopping)
     - [Staging Postgres shell](#staging-postgres-shell)
+    - [Check clusters](#check-clusters)
+    - [Remove older version](#remove-older-version)
+    - [Change config file](#change-config-file)
     - [Creating role](#creating-role)
     - [Granting ALL PRIVILEGES](#granting-all-privileges)
     - [Update Owner](#update-owner)
@@ -25,17 +28,17 @@
 ### On Linux
 
 ```shell
-sudo apt-get update
-sudo apt-get upgrade
-sudo apt install postgresql-14 postgresql-client-14
-wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add 
-echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" | sudo tee/etc/apt/sources.list.d/pgdg.list
+sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+wget -qO- https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo tee /etc/apt/trusted.gpg.d/pgdg.asc &>/dev/null
+sudo apt update
+sudo apt upgrade -y
+sudo apt install postgresql postgresql-client -y
 ```
 
 ### Enabling
 
 ```shell
-sudo pg_ctlcluster 14 main start
+sudo pg_ctlcluster 15 main start
 sudo systemctl enable postgresql.service
 ```
 
@@ -48,7 +51,7 @@ sudo systemctl start postgresql.service
 ### Checking status
 
 ```shell
-sudo systemctl status postgresql@13-main.service
+sudo systemctl status postgresql
 ```
 
 ### Stopping
@@ -60,8 +63,41 @@ sudo systemctl stop postgresql.service
 ### Staging Postgres shell
 
 ```shell
-sudo su -l postgres
-psql
+sudo -u postgres psql
+```
+
+### Check clusters
+
+```shell
+pg_lsclusters
+```
+
+### Remove older version
+
+```shell
+sudo apt-get --purge remove postgresql-14
+```
+
+### Change config file
+
+```shell
+sudo subl /etc/postgresql/15/main/postgresql.conf
+```
+
+> to change port search `port` under `Connection Settings` and update:
+
+```shell
+#------------------------------------------------------------------------------
+# CONNECTIONS AND AUTHENTICATION
+#------------------------------------------------------------------------------
+
+# - Connection Settings -
+
+#listen_addresses = 'localhost'  # what IP address(es) to listen on;
+         # comma-separated list of addresses;
+         # defaults to 'localhost'; use '*' for all
+         # (change requires restart)
+port = 5432       # (change requires restart)
 ```
 
 ### Creating role
