@@ -12,6 +12,7 @@
     - [Remove older version](#remove-older-version)
     - [Change config file](#change-config-file)
     - [Creating role](#creating-role)
+      - [With password](#with-password)
     - [Granting ALL PRIVILEGES](#granting-all-privileges)
     - [Update Owner](#update-owner)
     - [Listing databases](#listing-databases)
@@ -20,7 +21,6 @@
     - [Listing tables](#listing-tables)
     - [Connections and Authentications](#connections-and-authentications)
     - [Running PSQL Console](#running-psql-console)
-  - [Commands Table](#commands-table)
   - [References](#references)
 
 ## Installation and Setup
@@ -103,6 +103,12 @@ port = 5432       # (change requires restart)
 ### Creating role
 
 ```sql
+CREATE ROLE user_name SUPERUSER LOGIN;
+```
+
+#### With password
+
+```sql
 CREATE ROLE user_name SUPERUSER LOGIN PASSWORD 'password';
 ```
 
@@ -170,10 +176,6 @@ To initialize the database console within the project
 ```shell
 psql DATABASE_NAME
 ```
-
-## Commands Table
-
-> TODO
 
 ## References
 
