@@ -15,6 +15,7 @@
       - [With password](#with-password)
     - [Granting ALL PRIVILEGES](#granting-all-privileges)
     - [Update Owner](#update-owner)
+    - [Change password](#change-password)
     - [Listing databases](#listing-databases)
     - [Using a database](#using-a-database)
     - [Listing Users/Roles](#listing-usersroles)
@@ -122,6 +123,12 @@ GRANT ALL PRIVILEGES ON SCHEMA public TO user_name;
 
 ```sql
 ALTER DATABASE database_name OWNER TO user_name;
+```
+
+### Change password
+
+```sql
+ALTER USER user_name WITH PASSWORD 'new_password';
 ```
 
 ### Listing databases
