@@ -54,7 +54,8 @@
   - [PROCEDURES](#procedures)
   - [TRIGGERS](#triggers)
     - [SQL Commands table](#sql-commands-table)
-    - [Gists](#gists)
+  - [Gists](#gists)
+  - [References](#references)
 
 ## Data Types
 
@@ -654,6 +655,10 @@ $emp_stamp$ LANGUAGE plpgsql;"
 | MOVE |
 | NOTIFY |
 
-### Gists
+## Gists
 
 [SQL Script to create test DB](https://gist.github.com/LucasBarretto86/ddeec416c707578c7d993238f2f46c14)
+
+## References
+
+[Learning PostgreSQL](./LearningPostgreSQL/README.md)
