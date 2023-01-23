@@ -165,7 +165,7 @@ sudo nano /etc/postgresql/13/main/postgresql.conf
 
 Within the postgres config file update `listen_addresses` from `locahost` to `*` as bellow
 
-```txt
+```mono
 #------------------------------------------------------------------------------
 # CONNECTIONS AND AUTHENTICATION
 #------------------------------------------------------------------------------
