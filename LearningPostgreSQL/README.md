@@ -22,6 +22,7 @@
     - [Listing tables](#listing-tables)
     - [Connections and Authentications](#connections-and-authentications)
     - [Running PSQL Console](#running-psql-console)
+    - [Data anonymization](#data-anonymization)
   - [References](#references)
 
 ## Installation and Setup
@@ -183,6 +184,11 @@ To initialize the database console within the project
 ```shell
 psql DATABASE_NAME
 ```
+
+### Data anonymization
+
+<https://www.postgresql.org/about/news/postgresql-anonymizer-10-privacy-by-design-for-postgres-2452/>
+<https://www.youtube.com/watch?v=niIIFL4s-L8>
 
 ## References
 
