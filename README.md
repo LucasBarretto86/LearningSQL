@@ -362,8 +362,6 @@ The SQL NATURAL JOIN is a type of EQUI JOIN and is structured in such a way that
 
 > Basically a natural uses a common column to match and join results
 
-
-
 ### CROSS JOIN
 
 ### SELF JOIN
