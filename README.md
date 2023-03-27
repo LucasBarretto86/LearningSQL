@@ -40,6 +40,14 @@
     - [LEFT JOIN](#left-join)
     - [RIGHT JOIN](#right-join)
     - [FULL JOIN](#full-join)
+  - [ADVANCED JOINS](#advanced-joins)
+    - [EQUI JOIN](#equi-join)
+    - [NON EQUI JOIN](#non-equi-join)
+    - [NATURAL JOIN](#natural-join)
+    - [CROSS JOIN](#cross-join)
+    - [SELF JOIN](#self-join)
+  - [VIEWS](#views)
+    - [Creating PostgreSQL VIEWS](#creating-postgresql-views)
   - [SEQUENCES](#sequences)
     - [Complete syntax](#complete-syntax)
     - [Basic sequence](#basic-sequence)
@@ -296,6 +304,8 @@ REFERENCES parent (id);
 |RIGHT | return the right table complete including null relations but removes null relations from the left table |
 |FULL   | return every records from all joined table whether it has relation or not |
 
+![sql joins diagram](./src/images/sql_joins_diagram.png)
+
 ### INNER JOIN
 
 ```sql
@@ -335,6 +345,57 @@ FROM child
 FULL JOIN parent
 ON parent.id = child.parent_id;
 ```
+
+## ADVANCED JOINS
+
+<https://www.w3resource.com/sql/joins/perform-an-equi-join.php>
+
+### EQUI JOIN
+
+### NON EQUI JOIN
+
+### NATURAL JOIN
+
+We have already learned that an EQUI JOIN performs a JOIN against equality or matching column(s) values of the associated tables and an equal sign (=) is used as comparison operator in the where clause to refer equality.
+
+The SQL NATURAL JOIN is a type of EQUI JOIN and is structured in such a way that, columns with the same name of associated tables will appear once only.
+
+> Basically a natural uses a common column to match and join results
+
+
+
+### CROSS JOIN
+
+### SELF JOIN
+
+## VIEWS
+
+A view is a pseudo-table it creates a table like data-structure that still responds to selects as tables, a view allow you to create set of data using different tables as main source.
+
+### Creating PostgreSQL VIEWS
+
+```sql
+CREATE [OR REPLACE] VIEW view-name AS
+  SELECT column(s)
+  FROM table(s)
+  [WHERE condition(s)];
+```
+
+> The OR REPLACE parameter will replace the view if it already exists. If omitted and the view already exists, an error will be returned.
+
+**Example:**
+
+```sql
+CREATE OR REPLACE VIEW patients_and_person_data AS
+SELECT persons.id,
+  patients.id AS patient_id,
+  persons.first_name,
+  persons.last_name
+  FROM persons
+  JOIN patients ON patients.person_id = persons.id;
+```
+
+![view example](src/images/view_example.png)
 
 ## SEQUENCES
 
