@@ -12,8 +12,8 @@
     - [Remove older version](#remove-older-version)
     - [Change config file](#change-config-file)
     - [Creating role](#creating-role)
-      - [With password](#with-password)
     - [Granting ALL PRIVILEGES](#granting-all-privileges)
+    - [Revoking PRIVILEGES](#revoking-privileges)
     - [Update Owner](#update-owner)
     - [Change password](#change-password)
     - [Listing databases](#listing-databases)
@@ -105,12 +105,6 @@ port = 5432       # (change requires restart)
 ### Creating role
 
 ```sql
-CREATE ROLE user_name SUPERUSER LOGIN;
-```
-
-#### With password
-
-```sql
 CREATE ROLE user_name SUPERUSER LOGIN PASSWORD 'password';
 ```
 
@@ -118,6 +112,12 @@ CREATE ROLE user_name SUPERUSER LOGIN PASSWORD 'password';
 
 ```sql
 GRANT ALL PRIVILEGES ON SCHEMA public TO user_name;
+```
+
+### Revoking PRIVILEGES
+
+```sql
+REVOKE ALL PRIVILEGES ON SCHEMA public FROM user_name;
 ```
 
 ### Update Owner
