@@ -825,192 +825,161 @@ $emp_stamp$ LANGUAGE plpgsql;"
 
 ### SQL Commands table
 
-| Available help                   |
-| :------------------------------- |
-| ABORT                            |
-| ALTER AGGREGATE                  |
-| ALTER COLLATION                  |
-| ALTER CONVERSION                 |
-| ALTER DATABASE                   |
-| ALTER DEFAULT PRIVILEGES         |
-| ALTER DOMAIN                     |
-| ALTER EVENT TRIGGER              |
-| ALTER EXTENSION                  |
-| ALTER FOREIGN DATA WRAPPER       |
-| ALTER FOREIGN TABLE              |
-| ALTER FUNCTION                   |
-| ALTER GROUP                      |
-| ALTER INDEX                      |
-| ALTER LANGUAGE                   |
-| ALTER LARGE OBJECT               |
-| ALTER MATERIALIZED VIEW          |
-| ALTER OPERATOR                   |
-| ALTER OPERATOR CLASS             |
-| ALTER OPERATOR FAMILY            |
-| ALTER POLICY                     |
-| ALTER PROCEDURE                  |
-| ALTER PUBLICATION                |
-| ALTER ROLE                       |
-| ALTER ROUTINE                    |
-| ALTER RULE                       |
-| ALTER SCHEMA                     |
-| ALTER SEQUENCE                   |
-| ALTER SERVER                     |
-| ALTER STATISTICS                 |
-| ALTER SUBSCRIPTION               |
-| PREPARE                          |
-| PREPARE TRANSACTION              |
-| REASSIGN OWNED                   |
-| REFRESH MATERIALIZED VIEW        |
-| REINDEX                          |
-| RELEASE SAVEPOINT                |
-| RESET                            |
-| REVOKE                           |
-| ROLLBACK                         |
-| ROLLBACK PREPARED                |
-| ROLLBACK TO SAVEPOINT            |
-| SAVEPOINT                        |
-| SECURITY LABEL                   |
-| SELECT                           |
-| SELECT INTO                      |
-| SET                              |
-| SET CONSTRAINTS                  |
-| SET ROLE                         |
-| SET SESSION AUTHORIZATION        |
-| SET TRANSACTION                  |
-| SHOW                             |
-| START TRANSACTION                |
-| TABLE                            |
-| TRUNCATE                         |
-| UNLISTEN                         |
-| UPDATE                           |
-| VACUUM                           |
-| VALUES                           |
-| WITH                             |
-| ALTER SYSTEM                     |
-| ALTER TABLE                      |
-| ALTER TABLESPACE                 |
-| ALTER TEXT SEARCH CONFIGURATION  |
-| ALTER TEXT SEARCH DICTIONARY     |
-| ALTER TEXT SEARCH PARSER         |
-| ALTER TEXT SEARCH TEMPLATE       |
-| ALTER TRIGGER                    |
-| ALTER TYPE                       |
-| ALTER USER                       |
-| ALTER USER MAPPING               |
-| ALTER VIEW                       |
-| ANALYZE                          |
-| BEGIN                            |
-| CALL                             |
-| CHECKPOINT                       |
-| CLOSE                            |
-| CLUSTER                          |
-| COMMENT                          |
-| COMMIT                           |
-| COMMIT PREPARED                  |
-| COPY                             |
-| CREATE ACCESS METHOD             |
-| CREATE AGGREGATE                 |
-| CREATE CAST                      |
-| CREATE COLLATION                 |
-| CREATE CONVERSION                |
-| CREATE DATABASE                  |
-| CREATE DOMAIN                    |
-| CREATE EVENT TRIGGER             |
-| CREATE EXTENSION                 |
-| CREATE FOREIGN DATA WRAPPER      |
-| CREATE FOREIGN TABLE             |
-| CREATE FUNCTION                  |
-| CREATE GROUP                     |
-| CREATE INDEX                     |
-| CREATE LANGUAGE                  |
-| CREATE MATERIALIZED VIEW         |
-| CREATE OPERATOR                  |
-| CREATE OPERATOR CLASS            |
-| CREATE OPERATOR FAMILY           |
-| CREATE POLICY                    |
-| CREATE PROCEDURE                 |
-| CREATE PUBLICATION               |
-| CREATE ROLE                      |
-| CREATE RULE                      |
-| CREATE SCHEMA                    |
-| CREATE SEQUENCE                  |
-| CREATE SERVER                    |
-| CREATE STATISTICS                |
-| CREATE SUBSCRIPTION              |
-| CREATE TABLE                     |
-| CREATE TABLE AS                  |
-| CREATE TABLESPACE                |
-| CREATE TEXT SEARCH CONFIGURATION |
-| CREATE TEXT SEARCH DICTIONARY    |
-| CREATE TEXT SEARCH PARSER        |
-| CREATE TEXT SEARCH TEMPLATE      |
-| CREATE TRANSFORM                 |
-| CREATE TRIGGER                   |
-| CREATE TYPE                      |
-| CREATE USER                      |
-| CREATE USER MAPPING              |
-| CREATE VIEW                      |
-| DEALLOCATE                       |
-| DECLARE                          |
-| DELETE                           |
-| DISCARD                          |
-| DO                               |
-| DROP ACCESS METHOD               |
-| DROP AGGREGATE                   |
-| DROP CAST                        |
-| DROP COLLATION                   |
-| DROP CONVERSION                  |
-| DROP DATABASE                    |
-| DROP DOMAIN                      |
-| DROP EVENT TRIGGER               |
-| DROP EXTENSION                   |
-| DROP FOREIGN DATA WRAPPER        |
-| DROP FOREIGN TABLE               |
-| DROP FUNCTION                    |
-| DROP GROUP                       |
-| DROP INDEX                       |
-| DROP LANGUAGE                    |
-| DROP MATERIALIZED VIEW           |
-| DROP OPERATOR                    |
-| DROP OPERATOR CLASS              |
-| DROP OPERATOR FAMILY             |
-| DROP OWNED                       |
-| DROP POLICY                      |
-| DROP PROCEDURE                   |
-| DROP PUBLICATION                 |
-| DROP ROLE                        |
-| DROP ROUTINE                     |
-| DROP RULE                        |
-| DROP SCHEMA                      |
-| DROP SEQUENCE                    |
-| DROP SERVER                      |
-| DROP STATISTICS                  |
-| DROP SUBSCRIPTION                |
-| DROP TABLE                       |
-| DROP TABLESPACE                  |
-| DROP TEXT SEARCH CONFIGURATION   |
-| DROP TEXT SEARCH DICTIONARY      |
-| DROP TEXT SEARCH PARSER          |
-| DROP TEXT SEARCH TEMPLATE        |
-| DROP TRANSFORM                   |
-| DROP TRIGGER                     |
-| DROP TYPE                        |
-| DROP USER                        |
-| DROP USER MAPPING                |
-| DROP VIEW                        |
-| END                              |
-| EXECUTE                          |
-| EXPLAIN                          |
-| FETCH                            |
-| GRANT                            |
-| IMPORT FOREIGN SCHEMA            |
-| INSERT                           |
-| LISTEN                           |
-| LOAD                             |
-| LOCK                             |
-| MOVE                             |
-| NOTIFY                           |
+Here is a comprehensive table containing all SQL commands along with their descriptions, merged from both tables:
+
+| **SQL Command**                      | **Description**                                                                      |
+| ------------------------------------ | ------------------------------------------------------------------------------------ |
+| **ABORT**                            | Terminates the current transaction.                                                  |
+| **ADD**                              | Adds a column in an existing table.                                                  |
+| **ADD CONSTRAINT**                   | Adds a constraint after a table is already created.                                  |
+| **AGGREGATE**                        | Defines an aggregate function in SQL.                                                |
+| **ALL**                              | Returns true if all of the subquery values meet the condition.                       |
+| **ALTER**                            | Adds, deletes, or modifies columns in a table, or changes the data type of a column. |
+| **ALTER COLUMN**                     | Changes the data type of a column in a table.                                        |
+| **ALTER TABLE**                      | Adds, deletes, or modifies columns in a table.                                       |
+| **ALTER AGGREGATE**                  | Modifies an aggregate function.                                                      |
+| **ALTER COLLATION**                  | Modifies a collation.                                                                |
+| **ALTER CONVERSION**                 | Modifies a conversion.                                                               |
+| **ALTER DATABASE**                   | Modifies a database.                                                                 |
+| **ALTER DEFAULT PRIVILEGES**         | Modifies the default privileges for new objects in a schema.                         |
+| **ALTER DOMAIN**                     | Modifies a domain.                                                                   |
+| **ALTER EVENT TRIGGER**              | Modifies an event trigger.                                                           |
+| **ALTER EXTENSION**                  | Modifies an extension.                                                               |
+| **ALTER FOREIGN DATA WRAPPER**       | Modifies a foreign data wrapper.                                                     |
+| **ALTER FOREIGN TABLE**              | Modifies a foreign table.                                                            |
+| **ALTER FUNCTION**                   | Modifies a function.                                                                 |
+| **ALTER GROUP**                      | Modifies a role group.                                                               |
+| **ALTER INDEX**                      | Modifies an index.                                                                   |
+| **ALTER LANGUAGE**                   | Modifies a procedural language.                                                      |
+| **ALTER LARGE OBJECT**               | Modifies a large object.                                                             |
+| **ALTER MATERIALIZED VIEW**          | Modifies a materialized view.                                                        |
+| **ALTER OPERATOR**                   | Modifies an operator.                                                                |
+| **ALTER OPERATOR CLASS**             | Modifies an operator class.                                                          |
+| **ALTER OPERATOR FAMILY**            | Modifies an operator family.                                                         |
+| **ALTER POLICY**                     | Modifies a policy.                                                                   |
+| **ALTER PROCEDURE**                  | Modifies a procedure.                                                                |
+| **ALTER PUBLICATION**                | Modifies a publication.                                                              |
+| **ALTER ROLE**                       | Modifies a role.                                                                     |
+| **ALTER ROUTINE**                    | Modifies a routine.                                                                  |
+| **ALTER RULE**                       | Modifies a rule.                                                                     |
+| **ALTER SCHEMA**                     | Modifies a schema.                                                                   |
+| **ALTER SEQUENCE**                   | Modifies a sequence.                                                                 |
+| **ALTER SERVER**                     | Modifies a server.                                                                   |
+| **ALTER STATISTICS**                 | Modifies statistics.                                                                 |
+| **ALTER SUBSCRIPTION**               | Modifies a subscription.                                                             |
+| **ALTER SYSTEM**                     | Modifies system settings.                                                            |
+| **ALTER TABLESPACE**                 | Modifies a tablespace.                                                               |
+| **ALTER TEXT SEARCH CONFIGURATION**  | Modifies a text search configuration.                                                |
+| **ALTER TRIGGER**                    | Modifies a trigger.                                                                  |
+| **ALTER TYPE**                       | Modifies a type.                                                                     |
+| **ALTER USER**                       | Modifies a user.                                                                     |
+| **ALTER USER MAPPING**               | Modifies a user mapping.                                                             |
+| **ALTER VIEW**                       | Modifies a view.                                                                     |
+| **ANALYZE**                          | Collects statistics about database objects.                                          |
+| **BACKUP DATABASE**                  | Creates a backup of an existing database.                                            |
+| **BEGIN**                            | Starts a new transaction block.                                                      |
+| **BETWEEN**                          | Selects values within a given range.                                                 |
+| **CALL**                             | Executes a stored procedure.                                                         |
+| **CASE**                             | Creates different outputs based on conditions.                                       |
+| **CHECK**                            | A constraint that limits the value that can be placed in a column.                   |
+| **CHECKPOINT**                       | Forces a write of all modified pages in memory to disk.                              |
+| **CLOSE**                            | Closes a cursor.                                                                     |
+| **CLUSTER**                          | Reorders a table based on an index.                                                  |
+| **COMMENT**                          | Adds comments to a database object.                                                  |
+| **COMMIT**                           | Commits the current transaction.                                                     |
+| **COMMIT PREPARED**                  | Commits a previously prepared transaction.                                           |
+| **CONSTRAINT**                       | Adds or deletes a constraint.                                                        |
+| **CREATE**                           | Creates a database, index, view, table, or procedure.                                |
+| **CREATE AGGREGATE**                 | Creates an aggregate function.                                                       |
+| **CREATE CAST**                      | Creates a cast function.                                                             |
+| **CREATE COLLATION**                 | Creates a collation.                                                                 |
+| **CREATE CONVERSION**                | Creates a conversion.                                                                |
+| **CREATE DATABASE**                  | Creates a new SQL database.                                                          |
+| **CREATE DOMAIN**                    | Creates a domain.                                                                    |
+| **CREATE EVENT TRIGGER**             | Creates an event trigger.                                                            |
+| **CREATE EXTENSION**                 | Creates an extension.                                                                |
+| **CREATE FOREIGN DATA WRAPPER**      | Creates a foreign data wrapper.                                                      |
+| **CREATE FOREIGN TABLE**             | Creates a foreign table.                                                             |
+| **CREATE FUNCTION**                  | Creates a function.                                                                  |
+| **CREATE INDEX**                     | Creates an index on a table (allows duplicate values).                               |
+| **CREATE LANGUAGE**                  | Creates a procedural language.                                                       |
+| **CREATE MATERIALIZED VIEW**         | Creates a materialized view.                                                         |
+| **CREATE OPERATOR**                  | Creates an operator.                                                                 |
+| **CREATE OPERATOR CLASS**            | Creates an operator class.                                                           |
+| **CREATE OPERATOR FAMILY**           | Creates an operator family.                                                          |
+| **CREATE PROCEDURE**                 | Creates a stored procedure.                                                          |
+| **CREATE PUBLICATION**               | Creates a publication.                                                               |
+| **CREATE ROLE**                      | Creates a role.                                                                      |
+| **CREATE RULE**                      | Creates a rule.                                                                      |
+| **CREATE SCHEMA**                    | Creates a schema.                                                                    |
+| **CREATE SEQUENCE**                  | Creates a sequence.                                                                  |
+| **CREATE SERVER**                    | Creates a server.                                                                    |
+| **CREATE STATISTICS**                | Creates statistics.                                                                  |
+| **CREATE SUBSCRIPTION**              | Creates a subscription.                                                              |
+| **CREATE TABLE**                     | Creates a new table in the database.                                                 |
+| **CREATE TABLESPACE**                | Creates a new tablespace.                                                            |
+| **CREATE TEXT SEARCH CONFIGURATION** | Creates a text search configuration.                                                 |
+| **CREATE TRIGGER**                   | Creates a trigger.                                                                   |
+| **CREATE TYPE**                      | Creates a new data type.                                                             |
+| **CREATE USER**                      | Creates a new user.                                                                  |
+| **CREATE VIEW**                      | Creates a view based on the result set of a SELECT statement.                        |
+| **DELETE**                           | Deletes rows from a table.                                                           |
+| **DESC**                             | Sorts the result set in descending order.                                            |
+| **DISTINCT**                         | Selects only distinct (different) values.                                            |
+| **DO**                               | Executes an anonymous code block.                                                    |
+| **DROP**                             | Deletes a column, constraint, database, index, table, or view.                       |
+| **DROP COLUMN**                      | Deletes a column in a table.                                                         |
+| **DROP CONSTRAINT**                  | Deletes a UNIQUE, PRIMARY KEY, FOREIGN KEY, or CHECK constraint.                     |
+| **DROP DATABASE**                    | Deletes an existing SQL database.                                                    |
+| **DROP DEFAULT**                     | Deletes a DEFAULT constraint.                                                        |
+| **DROP INDEX**                       | Deletes an index in a table.                                                         |
+| **DROP TABLE**                       | Deletes an existing table in the database.                                           |
+| **DROP VIEW**                        | Deletes a view.                                                                      |
+| **END**                              | Ends a block of code in a transaction or function.                                   |
+| **EXECUTE**                          | Executes a stored procedure or function.                                             |
+| **EXPLAIN**                          | Displays the execution plan for a query.                                             |
+| **FETCH**                            | Retrieves data from a cursor.                                                        |
+| **FOREIGN KEY**                      | A constraint that is a key used to link two tables together.                         |
+| **FROM**                             | Specifies which table to select or delete data from.                                 |
+| **FULL OUTER JOIN**                  | Returns all rows when there is a match in either left table or right table.          |
+| **GROUP BY**                         | Groups the result set (used with aggregate functions: COUNT, MAX, MIN, SUM, AVG).    |
+| **HAVING**                           | Used instead of WHERE with aggregate functions.                                      |
+| **IN**                               | Allows you to specify multiple values in a WHERE clause.                             |
+| **INDEX**                            | Creates or deletes an index in a table.                                              |
+| **INNER JOIN**                       | Returns rows that have matching values in both tables.                               |
+| **INSERT INTO**                      | Inserts new rows in a table.                                                         |
+| **INSERT INTO SELECT**               | Copies data from one table into another table.                                       |
+| **IS NULL**                          | Tests for empty values.                                                              |
+| **IS NOT NULL**                      | Tests for non-empty values.                                                          |
+| **JOIN**                             |  Joins tables.       |
+ | **LIKE**            | Searches for a specified pattern in a column.
+ | **LIMIT**           | Specifies the number of records to return in the result set.
+ | **NOT**             | Only includes rows where a condition is not true.
+ | **NOT NULL**        | A constraint that enforces a column to not accept NULL values.
+ | **OR**              | Includes rows where either condition is true.
+ | **ORDER BY**        | Sorts the result set in ascending or descending order.
+ | **OUTER JOIN**      | Returns all rows when there is a match in either left table or right table.
+ | **PRIMARY KEY**     | A constraint that uniquely identifies each record in a database table.
+ | **PROCEDURE**       | A stored procedure.
+ | **RIGHT JOIN**      | Returns all rows from the right table, and the matching rows from the left table.
+ | **ROWNUM**          | Specifies the number of records to return in the result set.
+ | **SELECT**          | Selects data from a database.
+ | **SELECT DISTINCT** | Selects only distinct (different) values.
+ | **SELECT INTO**     | Copies data from one table into a new table.
+ | **SELECT TOP**      | Specifies the number of records to return in the result set.
+ | **SET**             | Specifies which columns and values that should be updated in a table.
+ | **TABLE**           | Creates a table, or adds, deletes, or modifies columns in a table, or deletes a table or data inside a table.
+ | **TOP**             | Specifies the number of records to return in the result set.
+ | **TRUNCATE TABLE**  | Deletes the data inside a table, but not the table itself.
+ | **UNION**           | Combines the result set of two or more SELECT statements (only distinct values).
+ | **UNION ALL**       | Combines the result set of two or more SELECT statements (allows duplicate values).
+ | **UNIQUE**          | A constraint that ensures that all values in a column are unique.
+ | **UPDATE**          | Updates existing rows in a table.
+ | **VALUES**          | Specifies the values of an INSERT INTO statement.
+ | **VIEW**            | Creates, updates, or deletes a view.
+ | **WHERE**           | Filters a result set to include only records that fulfill a specified condition.
+
+This table contains the most common SQL commands with their corresponding descriptions.
 
 ## Gists
 
