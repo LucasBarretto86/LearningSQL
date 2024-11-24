@@ -58,6 +58,7 @@
     - [NATURAL JOIN](#natural-join)
     - [CROSS JOIN](#cross-join)
     - [SELF JOIN](#self-join)
+  - [ALIASES](#aliases)
   - [VIEWS](#views)
     - [Creating PostgreSQL VIEWS](#creating-postgresql-views)
   - [SEQUENCES](#sequences)
@@ -211,7 +212,8 @@ Used to manage transactions and ensure data consistency.
 | NVARCHAR      | Variable-length storage with a maximum length of 4,000 characters |
 | NVARCHAR(max) | Variable-length storage with provided max characters              |
 | NTEXT         | Variable-length storage with a maximum size of 1GB data           |
-*Note that above data types are not supported in MySQL database.*
+
+> Note that above data types are not supported in MySQL database.
 
 ### Binary Data Types
 
@@ -627,6 +629,40 @@ The SQL NATURAL JOIN is a type of EQUI JOIN and is structured in such a way that
 ### CROSS JOIN
 
 ### SELF JOIN
+
+## ALIASES
+
+SQL aliases are used to give a table, or a column in a table, a temporary name.
+
+Aliases are often used to make column names more readable.
+
+An alias only exists for the duration of that query.
+
+An alias is created with the AS keyword.
+
+```sql
+SELECT CustomerID AS ID
+FROM Customers;
+```
+
+**Using Aliases With a Space Character:**
+
+```sql
+SELECT ProductName AS [My Great Products]
+FROM Products;
+```
+
+```sql
+SELECT ProductName AS "My Great Products"
+FROM Products;
+```
+
+**Using Alias and CONTACT:**
+
+```sql
+SELECT CustomerName, CONCAT(Address,', ',PostalCode,', ',City,', ',Country) AS Address
+FROM Customers;
+```
 
 ## VIEWS
 
