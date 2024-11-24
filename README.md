@@ -1,6 +1,10 @@
 # Learning SQL
 
 - [Learning SQL](#learning-sql)
+  - [SQL constructs](#sql-constructs)
+    - [Statements](#statements)
+    - [Clauses](#clauses)
+    - [Operators](#operators)
   - [Data Types](#data-types)
     - [Numeric](#numeric)
     - [Date and Time](#date-and-time)
@@ -25,7 +29,15 @@
   - [UPDATE](#update)
   - [DELETE](#delete)
   - [FUNCTIONS](#functions)
-    - [Count](#count)
+    - [COUNT](#count)
+    - [MIN](#min)
+    - [MAX](#max)
+    - [AVG](#avg)
+    - [SUM](#sum)
+  - [LIKE](#like)
+  - [WILDCARDS](#wildcards)
+  - [IN](#in)
+    - [BETWEEN](#between)
   - [ORDER BY](#order-by)
   - [ALTER TABLE](#alter-table)
     - [Renaming table](#renaming-table)
@@ -65,12 +77,103 @@
   - [Gists](#gists)
   - [References](#references)
 
+## SQL constructs
+
+### Statements
+
+**DDL (Data Definition Language)**  
+
+Used to define or modify database structures (e.g., tables, views, indexes).
+
+| **Statement** | **Description**                                          |
+| ------------- | -------------------------------------------------------- |
+| `CREATE`      | Defines a new database object (e.g., table, view).       |
+| `ALTER`       | Modifies an existing database object.                    |
+| `DROP`        | Deletes a database object.                               |
+| `TRUNCATE`    | Removes all rows from a table without logging deletions. |
+| `RENAME`      | Renames a database object (e.g., table or column).       |
+
+**DML (Data Manipulation Language)**  
+
+Used for managing data within schema objects (tables, views).
+
+| **Statement** | **Description**                         |
+| ------------- | --------------------------------------- |
+| `SELECT`      | Retrieves data from one or more tables. |
+| `INSERT`      | Adds new data rows to a table.          |
+| `UPDATE`      | Modifies existing data in a table.      |
+| `DELETE`      | Removes data rows from a table.         |
+
+**DCL (Data Control Language)**  
+
+Used to control access to data and permissions in the database.
+
+| **Statement** | **Description**                                  |
+| ------------- | ------------------------------------------------ |
+| `GRANT`       | Provides specific privileges to users or roles.  |
+| `REVOKE`      | Removes specific privileges from users or roles. |
+
+**TCL (Transaction Control Language)**  
+
+Used to manage transactions and ensure data consistency.
+
+| **Statement**           | **Description**                                          |
+| ----------------------- | -------------------------------------------------------- |
+| `COMMIT`                | Saves all changes made during the current transaction.   |
+| `ROLLBACK`              | Undoes all changes made in the current transaction.      |
+| `SAVEPOINT`             | Marks a point within a transaction to roll back to.      |
+| `ROLLBACK TO SAVEPOINT` | Rolls back the transaction to a specific savepoint.      |
+| `SET TRANSACTION`       | Configures transaction behavior (e.g., isolation level). |
+
+---
+
+### Clauses
+
+| **Clause** | **Description**                                                     |
+| ---------- | ------------------------------------------------------------------- |
+| `WHERE`    | Filters rows based on a specified condition.                        |
+| `ORDER BY` | Sorts the result set by one or more columns.                        |
+| `GROUP BY` | Groups rows that share a property for aggregation.                  |
+| `HAVING`   | Filters results after grouping, typically with aggregate functions. |
+| `LIMIT`    | Limits the number of rows returned.                                 |
+| `OFFSET`   | Skips a specified number of rows before starting to return rows.    |
+| `JOIN`     | Combines rows from two or more tables based on a related column.    |
+| `ON`       | Specifies the condition for the `JOIN`.                             |
+| `IN`       | Filters rows based on a list of values.                             |
+| `BETWEEN`  | Filters rows within a range of values.                              |
+| `LIKE`     | Filters rows based on pattern matching.                             |
+| `IS NULL`  | Filters rows where a column contains a `NULL` value.                |
+| `DISTINCT` | Returns unique (non-duplicate) rows.                                |
+
+### Operators
+
+| **Operator**  | **Description**                                               |
+| ------------- | ------------------------------------------------------------- |
+| `=`           | Tests equality between two expressions.                       |
+| `!=` / `<>`   | Tests inequality between two expressions.                     |
+| `>`           | Greater than.                                                 |
+| `<`           | Less than.                                                    |
+| `>=`          | Greater than or equal to.                                     |
+| `<=`          | Less than or equal to.                                        |
+| `AND`         | Combines two or more conditions, all must be true.            |
+| `OR`          | Combines two or more conditions, at least one must be true.   |
+| `NOT`         | Negates a condition or expression.                            |
+| `LIKE`        | Used for pattern matching in strings.                         |
+| `IN`          | Tests if a value matches any value in a set or subquery.      |
+| `BETWEEN`     | Tests if a value is within a specified range.                 |
+| `IS NULL`     | Checks if a value is `NULL`.                                  |
+| `IS NOT NULL` | Checks if a value is **not** `NULL`.                          |
+| `EXISTS`      | Tests if a subquery returns any rows.                         |
+| `ANY`         | Compares a value to any value in a set or subquery.           |
+| `ALL`         | Compares a value to all values in a set or subquery.          |
+| `CASE`        | Provides conditional logic in queries (like an IF statement). |
+
 ## Data Types
 
 ### Numeric
 
 | Datatype | From                       | To                        |
-|:---------|:---------------------------|:--------------------------|
+| :------- | :------------------------- | :------------------------ |
 | BIT      | 0                          | 1                         |
 | TYNEINT  | 0                          | 255                       |
 | SMALLINT | -32,768                    | 32,767                    |
@@ -83,50 +186,50 @@
 
 ### Date and Time
 
-| Datatype     | Description                                                                                                                 |
-|:-------------|:----------------------------------------------------------------------------------------------------------------------------|
-| DATE         | Stores date in the format YYYY-MM-DD                                                                                        |
-| TIME         | Stores time in the format HH:MI:SS                                                                                          |
-| DATETIME     | Stores date and time information in the format YYYY-MM-DD HH:MI:SS                                                          |
-| TIMESTAMP    | Stores number of seconds passed since the Unix epoch (‘1970-01-01 00:00:00’ UTC)                                            |
-| YEAR         | Stores year in 2 digits or 4 digit format. Range 1901 to 2155 in 4-digit format. Range 70 to 69, representing 1970 to 2069. |
+| Datatype  | Description                                                                                                                 |
+| :-------- | :-------------------------------------------------------------------------------------------------------------------------- |
+| DATE      | Stores date in the format YYYY-MM-DD                                                                                        |
+| TIME      | Stores time in the format HH:MI:SS                                                                                          |
+| DATETIME  | Stores date and time information in the format YYYY-MM-DD HH:MI:SS                                                          |
+| TIMESTAMP | Stores number of seconds passed since the Unix epoch (‘1970-01-01 00:00:00’ UTC)                                            |
+| YEAR      | Stores year in 2 digits or 4 digit format. Range 1901 to 2155 in 4-digit format. Range 70 to 69, representing 1970 to 2069. |
 
 ### Character and String Data Types
 
-| Datatype       | Description                                                                  |
-|:---------------|:-----------------------------------------------------------------------------|
-| CHAR           | Fixed length with a maximum length of 8,000 characters                       |
-| VARCHAR        | Variable-length storage with a maximum length of 8,000 characters            |
-| VARCHAR(max)   | Variable-length storage with provided max characters, not supported in MySQL |
-| TEXT           | Variable-length storage with maximum size of 2GB data                        |
+| Datatype     | Description                                                                  |
+| :----------- | :--------------------------------------------------------------------------- |
+| CHAR         | Fixed length with a maximum length of 8,000 characters                       |
+| VARCHAR      | Variable-length storage with a maximum length of 8,000 characters            |
+| VARCHAR(max) | Variable-length storage with provided max characters, not supported in MySQL |
+| TEXT         | Variable-length storage with maximum size of 2GB data                        |
 
 ### Unicode Character and String Data Types
 
-| Datatype       | Description                                                       |
-|:---------------|:------------------------------------------------------------------|
-| NCHAR          | Fixed length with maximum length of 4,000 characters              |
-| NVARCHAR       | Variable-length storage with a maximum length of 4,000 characters |
-| NVARCHAR(max)  | Variable-length storage with provided max characters              |
-| NTEXT          | Variable-length storage with a maximum size of 1GB data           |
+| Datatype      | Description                                                       |
+| :------------ | :---------------------------------------------------------------- |
+| NCHAR         | Fixed length with maximum length of 4,000 characters              |
+| NVARCHAR      | Variable-length storage with a maximum length of 4,000 characters |
+| NVARCHAR(max) | Variable-length storage with provided max characters              |
+| NTEXT         | Variable-length storage with a maximum size of 1GB data           |
 *Note that above data types are not supported in MySQL database.*
 
 ### Binary Data Types
 
-| Datatype        | Description                                                  |
-|:----------------|:-------------------------------------------------------------|
-| BINARY          | Fixed length with a maximum length of 8,000 bytes            |
-| VARBINARY       | Variable-length storage with a maximum length of 8,000 bytes |
-| VARBINARY(max)  | Variable-length storage with provided max bytes              |
-| IMAGE           | Variable-length storage with maximum size of 2GB binary data |
+| Datatype       | Description                                                  |
+| :------------- | :----------------------------------------------------------- |
+| BINARY         | Fixed length with a maximum length of 8,000 bytes            |
+| VARBINARY      | Variable-length storage with a maximum length of 8,000 bytes |
+| VARBINARY(max) | Variable-length storage with provided max bytes              |
+| IMAGE          | Variable-length storage with maximum size of 2GB binary data |
 
 ### Miscellaneous Data Types
 
-| Datatype       | Description                                     |
-|:---------------|:------------------------------------------------|
-| CLOB           | Character large objects that can hold up to 2GB |
-| BLOB           | For binary large objects                        |
-| XML            | For storing XML data                            |
-| JSON           | For storing JSON data                           |
+| Datatype | Description                                     |
+| :------- | :---------------------------------------------- |
+| CLOB     | Character large objects that can hold up to 2GB |
+| BLOB     | For binary large objects                        |
+| XML      | For storing XML data                            |
+| JSON     | For storing JSON data                           |
 
 ## CREATE
 
@@ -227,10 +330,169 @@ WHERE birthday < '1980-1-1';
 
 ## FUNCTIONS
 
-### Count
+### COUNT
 
 ```sql
 SELECT COUNT(*) FROM person
+```
+
+### MIN
+
+Find the lowest value from a column given a table:
+
+```sql
+SELECT MIN(column_name)
+FROM table_name;
+
+-- OR
+
+SELECT MIN(column_name)
+FROM table_name
+WHERE condition;
+```
+
+### MAX
+
+Find the highest value from a column given a table:
+
+```sql
+SELECT MAX(column_name)
+FROM table_name;
+
+-- OR
+SELECT MAX(column_name)
+FROM table_name
+WHERE condition;
+```
+
+### AVG
+
+Find the average price of all records given a table:
+
+```sql
+SELECT AVG(column_name)
+FROM table_name;
+
+-- OR
+SELECT AVG(column_name)
+FROM table_name
+WHERE condition;
+```
+
+### SUM
+
+```sql
+SELECT SUM(column_name)
+FROM table_name;
+
+-- OR
+
+SELECT SUM(column_name)
+FROM table_name
+WHERE condition;
+```
+
+## LIKE
+
+On SQL we can also select values by approximation, matching values partially for that we use the `LIKE` operator>
+
+```sql
+SELECT column1, column2, ...
+FROM table_name
+WHERE columnN LIKE pattern;
+```
+
+**Example:**
+
+```sql
+SELECT *
+FROM person
+WHERE last_name LIKE '%Silva';
+```
+
+> For instance it will retrieve every record that includes on the last_name 'Silva', meaning 'Da Silva', 'e Silva', 'Silva'
+
+## WILDCARDS
+
+Wildcards are used in SQL to perform pattern matching, typically within the WHERE clause with the `LIKE` operator.
+
+| **Wildcard** | **Description**                                           |
+| ------------ | --------------------------------------------------------- |
+| `%`          | Represents zero or more characters.                       |
+| `_`          | Represents a single character.                            |
+| `[ ]`        | Matches any single character within the brackets.         |
+| `[^ ]`       | Matches any single character **not** within the brackets. |
+
+**Examples:**
+
+```sql
+ -- Matches names starting with 'J'
+ SELECT * 
+ FROM users 
+ WHERE name 
+ LIKE 'J%'; 
+
+ -- Matches 'John', 'Sean'
+ SELECT * 
+ FROM users 
+ WHERE name 
+ LIKE '_ohn'; 
+
+ -- Matches 'John' or 'john'
+ SELECT * 
+ FROM users 
+ WHERE name 
+ LIKE '[Jj]ohn'; 
+
+ -- Matches names not starting with 'J'
+ SELECT * 
+ FROM users 
+ WHERE name 
+ LIKE '[^J]ohn'; 
+```
+
+## IN
+
+The `IN` operator allows you to specify multiple values in a `WHERE` clause.
+
+```sql
+SELECT column_name(s)
+FROM table_name
+WHERE column_name IN (value1, value2, ...);
+```
+
+**Example:**
+
+```sql
+SELECT * FROM Customers
+WHERE Country IN ('Germany', 'France', 'UK');
+```
+
+### BETWEEN
+
+The `BETWEEN` operator selects values within a given range. The values can be numbers, text, or dates.
+
+The `BETWEEN` operator is inclusive: begin and end values are included.
+
+```sql
+SELECT column_name(s)
+FROM table_name
+WHERE column_name BETWEEN value1 AND value2;
+```
+
+**Example:**
+
+```sql
+SELECT * FROM Products
+WHERE Price BETWEEN 10 AND 20;
+```
+
+**Example associated with IN:**
+
+```sql
+SELECT * FROM Products
+WHERE Price BETWEEN 10 AND 20
+AND CategoryID IN (1,2,3);
 ```
 
 ## ORDER BY
@@ -297,12 +559,12 @@ REFERENCES parent (id);
 
 ## JOINS
 
-|Join Type|Description|
-| :--- | :--- |
-|INNER  | Only returns the values that has relation, skipping every record that has null relation |
-|LEFT   | return the left table complete including null relations but removes null relations from the right table |
-|RIGHT | return the right table complete including null relations but removes null relations from the left table |
-|FULL   | return every records from all joined table whether it has relation or not |
+| Join Type | Description                                                                                             |
+| :-------- | :------------------------------------------------------------------------------------------------------ |
+| INNER     | Only returns the values that has relation, skipping every record that has null relation                 |
+| LEFT      | return the left table complete including null relations but removes null relations from the right table |
+| RIGHT     | return the right table complete including null relations but removes null relations from the left table |
+| FULL      | return every records from all joined table whether it has relation or not                               |
 
 ![sql joins diagram](./src/images/sql_joins_diagram.png)
 
@@ -412,13 +674,13 @@ CREATE SEQUENCE sequence_name
   OWNED BY { table_name.column_name | NONE };
 ```
 
-|Options| Description|
-|:----- | :--------- |
-| AS            | Specify the data type of the sequence|
-| MINVALUE      | The minimum value and maximum value of the sequence|
-| MAXVALUE      | For an ascending sequence, the default maximum value is the maximum value of the data type of the sequence |
-| CYCLE         | The CYCLE allows you to restart the value if the limit is reached. |
-| OWNED BY      | The OWNED BY clause allows you to associate the table column with the sequence so that when you drop the column or table, PostgreSQL will automatically drop the associated sequence.|
+| Options  | Description                                                                                                                                                                           |
+| :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| AS       | Specify the data type of the sequence                                                                                                                                                 |
+| MINVALUE | The minimum value and maximum value of the sequence                                                                                                                                   |
+| MAXVALUE | For an ascending sequence, the default maximum value is the maximum value of the data type of the sequence                                                                            |
+| CYCLE    | The CYCLE allows you to restart the value if the limit is reached.                                                                                                                    |
+| OWNED BY | The OWNED BY clause allows you to associate the table column with the sequence so that when you drop the column or table, PostgreSQL will automatically drop the associated sequence. |
 
 ### Basic sequence
 
@@ -467,10 +729,10 @@ INSERT INTO students VALUES(students_id_sequence.nextval,'Suresh');
 
 Resulting:
 
-| ID  |      NAME      |
-| :-- | :------------: |
-|  1  |     Ramesh     |
-|  2  |     Suresh     |
+| ID  |  NAME  |
+| :-- | :----: |
+| 1   | Ramesh |
+| 2   | Suresh |
 
 #### Creating sequence auto incremental
 
@@ -527,192 +789,192 @@ $emp_stamp$ LANGUAGE plpgsql;"
 
 ### SQL Commands table
 
-| Available help |
-| :------------- |
-| ABORT |
-| ALTER AGGREGATE |
-| ALTER COLLATION |
-| ALTER CONVERSION |
-| ALTER DATABASE |
-| ALTER DEFAULT PRIVILEGES |
-| ALTER DOMAIN |
-| ALTER EVENT TRIGGER |
-| ALTER EXTENSION |
-| ALTER FOREIGN DATA WRAPPER |
-| ALTER FOREIGN TABLE |
-| ALTER FUNCTION |
-| ALTER GROUP |
-| ALTER INDEX |
-| ALTER LANGUAGE |
-| ALTER LARGE OBJECT |
-| ALTER MATERIALIZED VIEW |
-| ALTER OPERATOR |
-| ALTER OPERATOR CLASS |
-| ALTER OPERATOR FAMILY |
-| ALTER POLICY |
-| ALTER PROCEDURE |
-| ALTER PUBLICATION |
-| ALTER ROLE |
-| ALTER ROUTINE |
-| ALTER RULE |
-| ALTER SCHEMA |
-| ALTER SEQUENCE |
-| ALTER SERVER |
-| ALTER STATISTICS |
-| ALTER SUBSCRIPTION |
-| PREPARE |
-| PREPARE TRANSACTION |
-| REASSIGN OWNED |
-| REFRESH MATERIALIZED VIEW |
-| REINDEX |
-| RELEASE SAVEPOINT |
-| RESET |
-| REVOKE |
-| ROLLBACK |
-| ROLLBACK PREPARED |
-| ROLLBACK TO SAVEPOINT |
-| SAVEPOINT |
-| SECURITY LABEL |
-| SELECT |
-| SELECT INTO |
-| SET |
-| SET CONSTRAINTS |
-| SET ROLE |
-| SET SESSION AUTHORIZATION |
-| SET TRANSACTION |
-| SHOW |
-| START TRANSACTION |
-| TABLE |
-| TRUNCATE |
-| UNLISTEN |
-| UPDATE |
-| VACUUM |
-| VALUES |
-| WITH |
-| ALTER SYSTEM |
-| ALTER TABLE |
-| ALTER TABLESPACE |
-| ALTER TEXT SEARCH CONFIGURATION   |
-| ALTER TEXT SEARCH DICTIONARY |
-| ALTER TEXT SEARCH PARSER |
-| ALTER TEXT SEARCH TEMPLATE |
-| ALTER TRIGGER |
-| ALTER TYPE |
-| ALTER USER |
-| ALTER USER MAPPING |
-| ALTER VIEW |
-| ANALYZE |
-| BEGIN |
-| CALL |
-| CHECKPOINT |
-| CLOSE |
-| CLUSTER |
-| COMMENT |
-| COMMIT |
-| COMMIT PREPARED |
-| COPY |
-| CREATE ACCESS METHOD |
-| CREATE AGGREGATE |
-| CREATE CAST |
-| CREATE COLLATION |
-| CREATE CONVERSION |
-| CREATE DATABASE |
-| CREATE DOMAIN |
-| CREATE EVENT TRIGGER |
-| CREATE EXTENSION |
-| CREATE FOREIGN DATA WRAPPER |
-| CREATE FOREIGN TABLE |
-| CREATE FUNCTION |
-| CREATE GROUP |
-| CREATE INDEX |
-| CREATE LANGUAGE |
-| CREATE MATERIALIZED VIEW |
-| CREATE OPERATOR |
-| CREATE OPERATOR CLASS |
-| CREATE OPERATOR FAMILY |
-| CREATE POLICY |
-| CREATE PROCEDURE |
-| CREATE PUBLICATION |
-| CREATE ROLE |
-| CREATE RULE |
-| CREATE SCHEMA |
-| CREATE SEQUENCE |
-| CREATE SERVER |
-| CREATE STATISTICS |
-| CREATE SUBSCRIPTION |
-| CREATE TABLE |
-| CREATE TABLE AS |
-| CREATE TABLESPACE |
+| Available help                   |
+| :------------------------------- |
+| ABORT                            |
+| ALTER AGGREGATE                  |
+| ALTER COLLATION                  |
+| ALTER CONVERSION                 |
+| ALTER DATABASE                   |
+| ALTER DEFAULT PRIVILEGES         |
+| ALTER DOMAIN                     |
+| ALTER EVENT TRIGGER              |
+| ALTER EXTENSION                  |
+| ALTER FOREIGN DATA WRAPPER       |
+| ALTER FOREIGN TABLE              |
+| ALTER FUNCTION                   |
+| ALTER GROUP                      |
+| ALTER INDEX                      |
+| ALTER LANGUAGE                   |
+| ALTER LARGE OBJECT               |
+| ALTER MATERIALIZED VIEW          |
+| ALTER OPERATOR                   |
+| ALTER OPERATOR CLASS             |
+| ALTER OPERATOR FAMILY            |
+| ALTER POLICY                     |
+| ALTER PROCEDURE                  |
+| ALTER PUBLICATION                |
+| ALTER ROLE                       |
+| ALTER ROUTINE                    |
+| ALTER RULE                       |
+| ALTER SCHEMA                     |
+| ALTER SEQUENCE                   |
+| ALTER SERVER                     |
+| ALTER STATISTICS                 |
+| ALTER SUBSCRIPTION               |
+| PREPARE                          |
+| PREPARE TRANSACTION              |
+| REASSIGN OWNED                   |
+| REFRESH MATERIALIZED VIEW        |
+| REINDEX                          |
+| RELEASE SAVEPOINT                |
+| RESET                            |
+| REVOKE                           |
+| ROLLBACK                         |
+| ROLLBACK PREPARED                |
+| ROLLBACK TO SAVEPOINT            |
+| SAVEPOINT                        |
+| SECURITY LABEL                   |
+| SELECT                           |
+| SELECT INTO                      |
+| SET                              |
+| SET CONSTRAINTS                  |
+| SET ROLE                         |
+| SET SESSION AUTHORIZATION        |
+| SET TRANSACTION                  |
+| SHOW                             |
+| START TRANSACTION                |
+| TABLE                            |
+| TRUNCATE                         |
+| UNLISTEN                         |
+| UPDATE                           |
+| VACUUM                           |
+| VALUES                           |
+| WITH                             |
+| ALTER SYSTEM                     |
+| ALTER TABLE                      |
+| ALTER TABLESPACE                 |
+| ALTER TEXT SEARCH CONFIGURATION  |
+| ALTER TEXT SEARCH DICTIONARY     |
+| ALTER TEXT SEARCH PARSER         |
+| ALTER TEXT SEARCH TEMPLATE       |
+| ALTER TRIGGER                    |
+| ALTER TYPE                       |
+| ALTER USER                       |
+| ALTER USER MAPPING               |
+| ALTER VIEW                       |
+| ANALYZE                          |
+| BEGIN                            |
+| CALL                             |
+| CHECKPOINT                       |
+| CLOSE                            |
+| CLUSTER                          |
+| COMMENT                          |
+| COMMIT                           |
+| COMMIT PREPARED                  |
+| COPY                             |
+| CREATE ACCESS METHOD             |
+| CREATE AGGREGATE                 |
+| CREATE CAST                      |
+| CREATE COLLATION                 |
+| CREATE CONVERSION                |
+| CREATE DATABASE                  |
+| CREATE DOMAIN                    |
+| CREATE EVENT TRIGGER             |
+| CREATE EXTENSION                 |
+| CREATE FOREIGN DATA WRAPPER      |
+| CREATE FOREIGN TABLE             |
+| CREATE FUNCTION                  |
+| CREATE GROUP                     |
+| CREATE INDEX                     |
+| CREATE LANGUAGE                  |
+| CREATE MATERIALIZED VIEW         |
+| CREATE OPERATOR                  |
+| CREATE OPERATOR CLASS            |
+| CREATE OPERATOR FAMILY           |
+| CREATE POLICY                    |
+| CREATE PROCEDURE                 |
+| CREATE PUBLICATION               |
+| CREATE ROLE                      |
+| CREATE RULE                      |
+| CREATE SCHEMA                    |
+| CREATE SEQUENCE                  |
+| CREATE SERVER                    |
+| CREATE STATISTICS                |
+| CREATE SUBSCRIPTION              |
+| CREATE TABLE                     |
+| CREATE TABLE AS                  |
+| CREATE TABLESPACE                |
 | CREATE TEXT SEARCH CONFIGURATION |
-| CREATE TEXT SEARCH DICTIONARY |
-| CREATE TEXT SEARCH PARSER |
-| CREATE TEXT SEARCH TEMPLATE |
-| CREATE TRANSFORM |
-| CREATE TRIGGER |
-| CREATE TYPE |
-| CREATE USER |
-| CREATE USER MAPPING |
-| CREATE VIEW |
-| DEALLOCATE |
-| DECLARE |
-| DELETE |
-| DISCARD |
-| DO |
-| DROP ACCESS METHOD |
-| DROP AGGREGATE |
-| DROP CAST |
-| DROP COLLATION |
-| DROP CONVERSION |
-| DROP DATABASE |
-| DROP DOMAIN |
-| DROP EVENT TRIGGER |
-| DROP EXTENSION |
-| DROP FOREIGN DATA WRAPPER |
-| DROP FOREIGN TABLE |
-| DROP FUNCTION |
-| DROP GROUP |
-| DROP INDEX |
-| DROP LANGUAGE |
-| DROP MATERIALIZED VIEW |
-| DROP OPERATOR |
-| DROP OPERATOR CLASS |
-| DROP OPERATOR FAMILY |
-| DROP OWNED |
-| DROP POLICY |
-| DROP PROCEDURE |
-| DROP PUBLICATION |
-| DROP ROLE |
-| DROP ROUTINE |
-| DROP RULE |
-| DROP SCHEMA |
-| DROP SEQUENCE |
-| DROP SERVER |
-| DROP STATISTICS |
-| DROP SUBSCRIPTION |
-| DROP TABLE |
-| DROP TABLESPACE |
-| DROP TEXT SEARCH CONFIGURATION |
-| DROP TEXT SEARCH DICTIONARY |
-| DROP TEXT SEARCH PARSER |
-| DROP TEXT SEARCH TEMPLATE |
-| DROP TRANSFORM |
-| DROP TRIGGER |
-| DROP TYPE |
-| DROP USER |
-| DROP USER MAPPING |
-| DROP VIEW |
-| END |
-| EXECUTE |
-| EXPLAIN |
-| FETCH |
-| GRANT |
-| IMPORT FOREIGN SCHEMA |
-| INSERT |
-| LISTEN |
-| LOAD |
-| LOCK |
-| MOVE |
-| NOTIFY |
+| CREATE TEXT SEARCH DICTIONARY    |
+| CREATE TEXT SEARCH PARSER        |
+| CREATE TEXT SEARCH TEMPLATE      |
+| CREATE TRANSFORM                 |
+| CREATE TRIGGER                   |
+| CREATE TYPE                      |
+| CREATE USER                      |
+| CREATE USER MAPPING              |
+| CREATE VIEW                      |
+| DEALLOCATE                       |
+| DECLARE                          |
+| DELETE                           |
+| DISCARD                          |
+| DO                               |
+| DROP ACCESS METHOD               |
+| DROP AGGREGATE                   |
+| DROP CAST                        |
+| DROP COLLATION                   |
+| DROP CONVERSION                  |
+| DROP DATABASE                    |
+| DROP DOMAIN                      |
+| DROP EVENT TRIGGER               |
+| DROP EXTENSION                   |
+| DROP FOREIGN DATA WRAPPER        |
+| DROP FOREIGN TABLE               |
+| DROP FUNCTION                    |
+| DROP GROUP                       |
+| DROP INDEX                       |
+| DROP LANGUAGE                    |
+| DROP MATERIALIZED VIEW           |
+| DROP OPERATOR                    |
+| DROP OPERATOR CLASS              |
+| DROP OPERATOR FAMILY             |
+| DROP OWNED                       |
+| DROP POLICY                      |
+| DROP PROCEDURE                   |
+| DROP PUBLICATION                 |
+| DROP ROLE                        |
+| DROP ROUTINE                     |
+| DROP RULE                        |
+| DROP SCHEMA                      |
+| DROP SEQUENCE                    |
+| DROP SERVER                      |
+| DROP STATISTICS                  |
+| DROP SUBSCRIPTION                |
+| DROP TABLE                       |
+| DROP TABLESPACE                  |
+| DROP TEXT SEARCH CONFIGURATION   |
+| DROP TEXT SEARCH DICTIONARY      |
+| DROP TEXT SEARCH PARSER          |
+| DROP TEXT SEARCH TEMPLATE        |
+| DROP TRANSFORM                   |
+| DROP TRIGGER                     |
+| DROP TYPE                        |
+| DROP USER                        |
+| DROP USER MAPPING                |
+| DROP VIEW                        |
+| END                              |
+| EXECUTE                          |
+| EXPLAIN                          |
+| FETCH                            |
+| GRANT                            |
+| IMPORT FOREIGN SCHEMA            |
+| INSERT                           |
+| LISTEN                           |
+| LOAD                             |
+| LOCK                             |
+| MOVE                             |
+| NOTIFY                           |
 
 ## Gists
 
@@ -720,4 +982,4 @@ $emp_stamp$ LANGUAGE plpgsql;"
 
 ## References
 
-[Learning PostgreSQL](./LearningPostgreSQL/README.md)
+[W3School SQL Tutorial](https://www.w3schools.com/sql/default.asp)
