@@ -14,12 +14,6 @@
     - [Miscellaneous Data Types](#miscellaneous-data-types)
   - [SQL Constraints](#sql-constraints)
     - [PRIMARY KEY](#primary-key)
-    - [SQLite](#sqlite)
-    - [MySQL](#mysql)
-    - [PostgreSQL](#postgresql)
-    - [SQL Server](#sql-server)
-    - [Standard SQL (General Syntax)](#standard-sql-general-syntax)
-    - [Key Points](#key-points)
   - [CREATE DATABASE](#create-database)
   - [CREATE TABLE](#create-table)
   - [INSERT](#insert)
@@ -67,7 +61,6 @@
     - [SELF JOIN](#self-join)
   - [ALIASES](#aliases)
   - [VIEWS](#views)
-    - [Creating PostgreSQL VIEWS](#creating-postgresql-views)
   - [SEQUENCES](#sequences)
     - [Complete syntax](#complete-syntax)
     - [Basic sequence](#basic-sequence)
@@ -84,6 +77,7 @@
     - [SQL Commands table](#sql-commands-table)
   - [BACKUP DATABASE](#backup-database)
     - [WITH DIFFERENTIAL](#with-differential)
+    - [SQL INJECTION](#sql-injection)
   - [Gists](#gists)
   - [References](#references)
 
@@ -366,7 +360,7 @@ This should now meet your request by clearly separating the SQL commands from th
 
 To create a primary key with `AUTOINCREMENT` in SQL, the syntax can vary slightly depending on the database system you are using. Here's how it's commonly done:
 
-### SQLite
+**SQLite:**
 
 In SQLite, the `INTEGER PRIMARY KEY` automatically behaves as an autoincrementing column:
 
@@ -378,7 +372,7 @@ CREATE TABLE users (
 );
 ```
 
-### MySQL
+**MySQL:**
 
 In MySQL, you explicitly use the `AUTO_INCREMENT` keyword:
 
@@ -390,7 +384,7 @@ CREATE TABLE users (
 );
 ```
 
-### PostgreSQL
+**PostgreSQL:**
 
 In PostgreSQL, you can use the `SERIAL` pseudo-type to create an auto-incrementing primary key:
 
@@ -412,7 +406,7 @@ CREATE TABLE users (
 );
 ```
 
-### SQL Server
+**SQL Server:**
 
 In SQL Server, you use the `IDENTITY` keyword:
 
@@ -424,7 +418,7 @@ CREATE TABLE users (
 );
 ```
 
-### Standard SQL (General Syntax)
+**Standard SQL (General Syntax):**
 
 If your database system follows a more general SQL standard:
 
@@ -435,13 +429,6 @@ CREATE TABLE users (
     age INTEGER
 );
 ```
-
-### Key Points
-
-- **Primary Key**: Ensures each value in the column is unique and not null.
-- **Autoincrement**: Automatically generates a unique value for each new row.
-
-Make sure to check your specific database documentation for variations or additional options.
 
 ## CREATE DATABASE
 
@@ -875,7 +862,30 @@ FROM Customers;
 
 A view is a pseudo-table it creates a table like data-structure that still responds to selects as tables, a view allow you to create set of data using different tables as main source.
 
-### Creating PostgreSQL VIEWS
+```sql
+CREATE VIEW view_name AS
+SELECT column1, column2, ...
+FROM table_name
+WHERE condition;
+```
+
+**Example:**
+
+```sql
+CREATE VIEW [Products Above Average Price] AS
+SELECT ProductName, Price
+FROM Products
+WHERE Price > (SELECT AVG(Price) FROM Products);
+```
+
+**Usage:**
+
+```sql
+SELECT * FROM [Products Above Average Price];
+
+```
+
+**PostgreSQL VIEW:**
 
 ```sql
 CREATE [OR REPLACE] VIEW view-name AS
@@ -1221,6 +1231,10 @@ BACKUP DATABASE testDB
 TO DISK = 'D:\backups\testDB.bak'
 WITH DIFFERENTIAL;
 ```
+
+### SQL INJECTION
+
+[W3School about SQL Injection](https://www.w3schools.com/sql/sql_injection.asp)
 
 ## Gists
 
