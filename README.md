@@ -199,7 +199,7 @@ Used to manage transactions and ensure data consistency.
 | Operator | Description          |
 | -------- | -------------------- |
 | `&`      | Bitwise AND.         |
-| `|`      | Bitwise OR.          |
+| `\|`     | Bitwise OR.          |
 | `^`      | Bitwise XOR.         |
 | `~`      | Bitwise NOT.         |
 | `<<`     | Bitwise shift left.  |
@@ -211,7 +211,7 @@ Used to manage transactions and ensure data consistency.
 
 | Operator | Description                                        |
 | -------- | -------------------------------------------------- |
-| `||`     | Concatenates two strings (in most databases).      |
+| `\|\|`   | Concatenates two strings (in most databases).      |
 | `::`     | Casts a value to a specific type (PostgreSQL).     |
 | `=`      | Assigns values in some contexts (e.g., variables). |
 
