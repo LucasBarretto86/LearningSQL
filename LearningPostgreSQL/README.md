@@ -17,6 +17,7 @@
     - [Listing Users/Roles](#listing-usersroles)
     - [Listing tables](#listing-tables)
   - [Postgres SQL Syntax](#postgres-sql-syntax)
+    - [Create database](#create-database)
     - [Creating role](#creating-role)
     - [Granting ALL PRIVILEGES](#granting-all-privileges)
     - [Revoking PRIVILEGES](#revoking-privileges)
@@ -227,27 +228,37 @@ psql [OPTION]... [DBNAME [USERNAME]]
 
 ## Postgres SQL Syntax
 
+### Create database
+
+```sh
+createdb my_database
+```
+
+```psql
+CREATE DATABASE my_database;
+```
+
 ### Creating role
 
-```sql
+```psql
 CREATE ROLE user_name SUPERUSER LOGIN PASSWORD 'password';
 ```
 
 ### Granting ALL PRIVILEGES
 
-```sql
+```psql
 GRANT ALL PRIVILEGES ON SCHEMA public TO user_name;
 ```
 
 ### Revoking PRIVILEGES
 
-```sql
+```psql
 REVOKE ALL PRIVILEGES ON SCHEMA public FROM user_name;
 ```
 
 ### Update Owner
 
-```sql
+```psql
 ALTER DATABASE database_name OWNER TO user_name;
 ```
 
